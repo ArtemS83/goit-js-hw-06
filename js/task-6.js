@@ -10,12 +10,13 @@ console.table(users);
 //   return array.map(arr => arr.name);
 // };
 
-const getUserNames = array => {
-  const { name } = array;
-  return array.map(({ name }) => {
-    return name;
-  });
-};
+// const getUserNames = array => {
+//   const { name } = array;
+//   return array.map(({ name }) => {
+//     return name;
+//   });
+// };
+const getUserNames = array => array.map(({ name }) => name);
 
 console.log(getUserNames(users));
 
@@ -33,12 +34,14 @@ console.log(getUserNames(users));
 // =======================================
 // Write code under this line
 
-const getUsersWithEyeColor = (array, color) => {
-  const { eyeColor } = array;
-  return array.filter(({ eyeColor }) => {
-    return eyeColor === color;
-  });
-};
+// const getUsersWithEyeColor = (array, color) => {
+//   const { eyeColor } = array;
+//   return array.filter(({ eyeColor }) => {
+//     return eyeColor === color;
+//   });
+// };
+const getUsersWithEyeColor = (array, color) =>
+  array.filter(({ eyeColor }) => eyeColor === color);
 
 console.log(getUsersWithEyeColor(users, 'blue')); // [объект Moore Hensley, объект Sharlene Bush, объект Carey Barr]
 
@@ -47,16 +50,20 @@ console.log(getUsersWithEyeColor(users, 'blue')); // [объект Moore Hensley
 // =======================================
 // Write code under this line
 
-const getUsersWithGender = (array, genderArr) => {
-  const { gender, name } = array;
-  // const {name} = array;
-  //  const {gender} = array;
-  return array
-    .filter(({ gender }) => {
-      return gender === genderArr;
-    })
-    .map(({ name }) => name);
-};
+// const getUsersWithGender = (array, genderArr) => {
+//   const { gender, name } = array;
+// // const {name} = array;
+// //  const {gender} = array;
+//   return array
+//     .filter(({ gender }) => {
+//       return gender === genderArr;
+//     })
+//     .map(({ name }) => name);
+// };
+
+const getUsersWithGender = (array, genderArr) =>
+  array.filter(({ gender }) => gender === genderArr).map(({ name }) => name);
+
 console.log(getUsersWithGender(users, 'male')); //["Moore Hensley", "Ross Vazquez", "Carey Barr", "Blackburn Dotson"]
 console.log(getUsersWithGender(users, 'female')); //["Sharlene Bush", "Elma Head", "Sheree Anthony"]
 
@@ -65,10 +72,12 @@ console.log(getUsersWithGender(users, 'female')); //["Sharlene Bush", "Elma Head
 // =======================================
 // Write code under this line
 
-const getInactiveUsers = array => {
-  const { isActive } = array;
-  return array.filter(({ isActive }) => !isActive);
-};
+// const getInactiveUsers = array => {
+//   const { isActive } = array;
+//   return array.filter(({ isActive }) => !isActive);
+// };
+
+const getInactiveUsers = array => array.filter(({ isActive }) => !isActive);
 
 console.log(getInactiveUsers(users)); // [объект Moore Hensley, объект Ross Vazquez, объект Blackburn Dotson]
 
@@ -77,10 +86,12 @@ console.log(getInactiveUsers(users)); // [объект Moore Hensley, объек
 // =======================================
 // Write code under this line
 
-const getUserWithEmail = (array, mail) => {
-  const { email } = array;
-  return array.find(({ email }) => email === mail);
-};
+// const getUserWithEmail = (array, mail) => {
+//   const { email } = array;
+//   return array.find(({ email }) => email === mail);
+// };
+const getUserWithEmail = (array, mail) =>
+  array.find(({ email }) => email === mail);
 
 console.log(getUserWithEmail(users, 'rossvazquez@xinware.com')); // {объект пользователя Ross Vazquez}
 console.log(getUserWithEmail(users, 'shereeanthony@kog.com')); // {объект пользователя Sheree Anthony}
@@ -116,10 +127,12 @@ console.log(getUsersWithAge(users, 30, 40));
 // =======================================
 // Write code under this line
 
-const calculateTotalBalance = array => {
-  // const { balance } = array;// бот без этого не принимает
-  return array.reduce((acc, { balance }) => acc + balance, 0);
-};
+// const calculateTotalBalance = array => {
+//   // const { balance } = array;// бот без этого не принимает
+//   return array.reduce((acc, { balance }) => acc + balance, 0);
+// };
+const calculateTotalBalance = array =>
+  array.reduce((acc, { balance }) => acc + balance, 0);
 
 console.log(calculateTotalBalance(users)); // 20916
 
@@ -155,12 +168,16 @@ console.log(getUsersWithFriend(users, 'Goldie Gentry'));
 // =======================================
 
 // Write code under this line
-const getNamesSortedByFriendsCount = array => {
-  const { name } = array;
-  return [...array]
+// const getNamesSortedByFriendsCount = array => {
+//   const { name } = array;
+//   return [...array]
+//     .sort((a, b) => a.friends.length - b.friends.length)
+//     .map(({ name }) => name);
+// };
+const getNamesSortedByFriendsCount = array =>
+  [...array]
     .sort((a, b) => a.friends.length - b.friends.length)
     .map(({ name }) => name);
-};
 
 console.log(getNamesSortedByFriendsCount(users));
 // [ 'Moore Hensley', 'Sharlene Bush', 'Elma Head', 'Carey Barr', 'Blackburn Dotson', 'Sheree Anthony', 'Ross Vazquez' ]
