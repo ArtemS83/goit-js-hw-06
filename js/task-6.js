@@ -85,3 +85,105 @@ const getUserWithEmail = (array, mail) => {
 console.log(getUserWithEmail(users, 'rossvazquez@xinware.com')); // {объект пользователя Ross Vazquez}
 console.log(getUserWithEmail(users, 'shereeanthony@kog.com')); // {объект пользователя Sheree Anthony}
 console.log(getUserWithEmail(users, 'elmahead@omatom.com')); // {объект пользователя Elma Head}
+
+// =======================================
+// Задача 6-6
+// =======================================
+// Write code under this line
+
+const getUsersWithAge = (array, min, max) =>
+  array
+    .filter(({ age }) => age >= min && age <= max)
+    .map(({ name, email }) => ({ name, email }));
+
+console.log(getUsersWithAge(users, 20, 30));
+/* [
+    { name: 'Ross Vazquez', email: 'rossvazquez@xinware.com' },
+    { name: 'Elma Head', email: 'elmahead@omatom.com' },
+    { name: 'Carey Barr', email: 'careybarr@nurali.com' }
+] */
+
+console.log(getUsersWithAge(users, 30, 40));
+/* [
+    { name: 'Moore Hensley', email: 'moorehensley@indexia.com' },
+    { name: 'Sharlene Bush', email: 'sharlenebush@tubesys.com' },
+    { name: 'Blackburn Dotson', email: 'blackburndotson@furnigeer.com' },
+    { name: 'Sheree Anthony', email: 'shereeanthony@kog.com' }
+] */
+
+// =======================================
+// Задача 6-7
+// =======================================
+// Write code under this line
+
+const calculateTotalBalance = array => {
+  // const { balance } = array;// бот без этого не принимает
+  return array.reduce((acc, { balance }) => acc + balance, 0);
+};
+
+console.log(calculateTotalBalance(users)); // 20916
+
+// =======================================
+// Задача 6-8
+// =======================================
+// Получи массив имен всех пользователей у которых есть друг с заданным именем.
+// Write code under this line
+
+// Для бота
+
+// const getUsersWithFriend = (array, friendName) => {
+//     const { name } = array;
+//     const { friends } = array;//бот без этого не принимает
+//   return array
+//     .filter(({ friends }) => friends.includes(friendName))
+//     .map(({ name }) => name);
+// };
+
+const getUsersWithFriend = (array, friendName) =>
+  array
+    .filter(({ friends }) => friends.includes(friendName))
+    .map(({ name }) => name);
+
+console.log(getUsersWithFriend(users, 'Briana Decker'));
+// [ 'Sharlene Bush', 'Sheree Anthony' ]
+
+console.log(getUsersWithFriend(users, 'Goldie Gentry'));
+// [ 'Elma Head', 'Sheree Anthony' ]
+
+// =======================================
+// Задача 6-9
+// =======================================
+
+// Write code under this line
+const getNamesSortedByFriendsCount = array => {
+  const { name } = array;
+  return [...array]
+    .sort((a, b) => a.friends.length - b.friends.length)
+    .map(({ name }) => name);
+};
+
+console.log(getNamesSortedByFriendsCount(users));
+// [ 'Moore Hensley', 'Sharlene Bush', 'Elma Head', 'Carey Barr', 'Blackburn Dotson', 'Sheree Anthony', 'Ross Vazquez' ]
+
+// =======================================
+// Задача 6-10
+// =======================================
+
+// Write code under this line
+const getSortedUniqueSkills = array =>
+  [...array]
+    .reduce((acc, { skills }) => [...acc, ...skills], [])
+    .filter((skill, index, arr) => arr.indexOf(skill) === index)
+    .sort();
+
+console.log(getSortedUniqueSkills(users));
+/* [ 'adipisicing', 'amet',
+ 'anim', 'commodo',
+ 'culpa', 'elit',
+ 'ex', 'ipsum',
+ 'irure', 'laborum',
+ 'lorem', 'mollit',
+ 'non', 'nostrud',
+ 'nulla', 'proident',
+ 'tempor', 'velit',
+ 'veniam' ]; */
